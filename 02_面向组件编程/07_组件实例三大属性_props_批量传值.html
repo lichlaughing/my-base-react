@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07_组件实例三大属性_props_批量传值</title>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+    class Person extends React.Component {
+        render() {
+            const {name, age, gender} = this.props
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>性别：{gender}</li>
+                    <li>年龄：{age + 1}</li>
+                </ul>
+            )
+        }
+    }
+
+    // babel+react 可以用展开运算符展开对象，但是只能用在组件标签上。
+    const data = {name: "李白", age: "200", gender: "男"}
+    ReactDOM.render(<Person {...data} />, document.getElementById("test"))
+</script>
+</body>
+</html>

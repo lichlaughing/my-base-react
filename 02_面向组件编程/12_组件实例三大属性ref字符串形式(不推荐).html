@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12_组件实例三大属性_ref基本使用</title>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+    // 创建类式组件
+    class MyComponent extends React.Component {
+        showData = () => {
+            console.log("左侧框框：", this.refs.in1.value)
+        }
+
+        showData2 = () => {
+            console.log("右侧框框：", this.refs.in2.value)
+        }
+
+        render() {
+            return (
+                <div>
+                    <label><input ref="in1" placeholder="点击按钮，提示数据"/></label>
+                    <button ref="btn" onClick={this.showData}> 提示输入内容</button>
+                    <label><input onBlur={this.showData2} ref="in2" placeholder="失去焦点，提示数据"/></label>
+                </div>
+            )
+        }
+    }
+
+    // 渲染组件
+    ReactDOM.render(<MyComponent/>, document.getElementById("test"))
+</script>
+</body>
+</html>

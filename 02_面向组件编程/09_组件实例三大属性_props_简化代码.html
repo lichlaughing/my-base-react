@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09_组件实例三大属性_props_简化代码</title>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+<script src="../js/prop-types.js"></script>
+
+<script type="text/babel">
+    // 定义组件
+    class Person extends React.Component {
+        render() {
+            const {name, age, gender} = this.props
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>性别：{gender}</li>
+                    <li>年龄：{age + 1}</li>
+                </ul>
+            )
+        }
+
+        // 对属性标签值类型及必要性限制
+        static propTypes = {
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number.isRequired,
+            speak: PropTypes.func
+        }
+        // 属性标签值的默认值
+        static defaultProps = {
+            gender: '中间的'
+        }
+    }
+
+    // 渲染组件
+    const data = {name: "李白", age: 10, gender: "男"}
+    ReactDOM.render(<Person {...data} />, document.getElementById("test"))
+</script>
+</body>
+</html>

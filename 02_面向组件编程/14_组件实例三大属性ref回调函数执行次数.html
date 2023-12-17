@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>14_组件实例三大属性ref回调函数执行次数</title>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+    // 创建类式组件
+    class MyComponent extends React.Component {
+
+        state = {isHot: false}
+
+        showData = () => {
+            const {in1} = this
+            console.log("左侧框框：", in1.value)
+        }
+        changeWeather = () => {
+            const {isHot} = this.state
+            this.setState({isHot: !isHot})
+        }
+
+        saveInput = (c) => {
+            this.in1 = c;
+            console.log("saveInput", c)
+        }
+
+        render() {
+            const {isHot} = this.state
+            return (
+                <div>
+                    <h2>今天天气：{isHot ? '热' : '冷'}</h2>
+                    {
+                        /**
+                         <label><input ref={(c) => {
+                         console.log("内联回调函数，", c)
+                         this.in1 = c
+                         }} placeholder="点击按钮，提示数据"/></label>
+                         **/
+                    }
+
+                    <label><input ref={this.saveInput} placeholder="点击按钮，提示数据"/></label>
+                    <button ref="btn" onClick={this.showData}> 提示输入内容</button>
+                    <button onClick={this.changeWeather}> 切换天气</button>
+                </div>
+            )
+        }
+    }
+
+    // 渲染组件
+    ReactDOM.render(<MyComponent/>, document.getElementById("test"))
+
+    /**
+     * 关于回调refs的说明
+     * 如果回调函数是以内联函数的方式定义的，在更新过程中它会被执行两次，第一次传入参
+     * 数nu11，然后第二次会传入参数DOM元素。这是因为在每次渲染时会创建一个新的函数实
+     * 例，所以React清空旧的ref并且设置新的。通过将ref的回调函数定义成class的绑定函数的
+     * 方式可以避免上述问题，但是大多数情况下它是无关紧要的。
+     */
+</script>
+</body>
+</html>
