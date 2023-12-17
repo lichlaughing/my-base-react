@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_类的基本知识</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 创建类
+    class Person {
+        constructor(name, age) {
+            // console.log("this", this) // 这里的this,类的实例对象
+            this.name = name
+            this.age = age
+        }
+
+        // 一般方法
+        speak() {
+            // speak在哪里? 类的原型对象上，给实例对象使用
+            // 这里的this是谁? 通过person实例对象调用speak,那么this就是person实例
+            console.log(`hello！我叫：${this.name},我今年：${this.age}`)
+        }
+    }
+
+    // 创建实例
+    const p1 = new Person("jerry", 20);
+    const p2 = new Person("tom", 201);
+    console.log(p1)
+    console.log(p2)
+    p1.speak()
+    p2.speak()
+    // p1.speak.call({a: 1}) 该方法能改变speak中的this为参数值
+
+    // 创建子类
+    class Student extends Person {
+        constructor(name, age, grade) {
+            super(name, age);
+            this.grade = grade
+        }
+
+        // 重写方法
+        speak() {
+            console.log(`hello！我叫：${this.name},我今年：${this.age},我读${this.grade}`)
+        }
+
+        // study在哪里? 类的原型对象上，给实例对象使用
+        // 这里的this是谁? 通过Student实例对象调用study,那么this就是Student实例
+        study() {
+            console.log("好好学习，天天向上！")
+        }
+    }
+
+    const s1 = new Student("小明", 15, "高中");
+    console.log(s1)
+    s1.speak();
+    s1.study();
+
+    /**
+     * 小结：
+     * 1.类中的构造器不是必须写的，要对实例进行一些初始化的操作，如添加指定属性时才写。
+     * 2.如果A类继承了B类，且A类中写了构造器，那么A类构造器中的super是必须要调用的。
+     * 3.类中所定义的方法，都是放在了类的原型对象上，供实例去使用。
+     */
+
+    class Car {
+        constructor(name, price) {
+            this.name = name
+            this.price = price
+            this.wheel = 4
+        }
+
+        // 类中可以写赋值语句，给Car的实例对象添加一个属性，名字为a
+        a = 1
+    }
+    const c1 = new Car("奔驰", 100);
+    console.log(c1)
+    const c2 = new Car("宝马", 200);
+    console.log(c2)
+</script>
+</body>
+</html>

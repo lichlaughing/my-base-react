@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsx练习</title>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+    const myData = ["Angular", "Vue", "React"];
+    //1.创建虚拟DOM
+    const VDOM = (
+        <div id="mydiv">
+            <h1>前端学习框架</h1>
+            <ul>
+                {myData.map((iterm, index) => {
+                    return <li key={index}>{iterm}</li>
+                })}
+            </ul>
+        </div>
+    )
+    //2.渲染虚拟DOM到页面
+    ReactDOM.render(VDOM, document.getElementById("test"))
+</script>
+</body>
+</html>

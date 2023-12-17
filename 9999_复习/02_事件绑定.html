@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02_事件绑定</title>
+</head>
+<body>
+<button id="bt1">bt1</button>
+<button id="bt2">bt2</button>
+<button id="bt3" onclick="demo()">bt3</button>
+
+<script>
+    const bt1 = document.getElementById("bt1");
+    bt1.addEventListener("click", () => {
+        alert("点击 bt1")
+    })
+
+    const bt2 = document.getElementById("bt2")
+    bt2.onclick = () => {
+        alert('点击 bt2')
+    }
+
+    function demo() {
+        alert("点击 bt3")
+    }
+</script>
+</body>
+</html>

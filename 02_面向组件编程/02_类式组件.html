@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02_类式组件</title>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+    // 创建类式组件
+    class MyComponent extends React.Component {
+        // render放在哪里? 放在类的原型对象上，供实例使用。
+        // render中的this是? MyComponent的实例对象。MyComponent组件实例对象。
+        render() {
+            console.log("render中的this:", this);
+            return <h2>我是类式组件，适用于复杂组件的定义</h2>
+        }
+    }
+
+    // 渲染组件
+    ReactDOM.render(<MyComponent/>, document.getElementById("test"))
+</script>
+</body>
+</html>

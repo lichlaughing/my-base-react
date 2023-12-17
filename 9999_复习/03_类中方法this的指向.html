@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_类中方法this的指向</title>
+</head>
+<body>
+<script>
+
+    /**
+     * 开启局部严格模式 。 this不允许指向window
+     */
+    function userStrict() {
+        'use strict'
+        console.log("开启局部严格模式中的this", this)
+    }
+
+    userStrict()
+
+    class Person {
+        constructor(name, age) {
+            this.name = name
+            this.age = age
+        }
+
+        speak() {
+            console.log("Person#speak中的this", this)
+        }
+    }
+
+    const p1 = new Person("jerry", 19)
+    p1.speak() // 通过实例对象调用
+    const x = p1.speak; //赋值语句将方法给了x
+    x() // 直接调用，并非实例调用。
+</script>
+</body>
+</html>
