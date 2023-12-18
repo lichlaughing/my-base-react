@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06_函数的柯里化</title>
+</head>
+<body>
+<script type="text/javascript">
+    function sum(a, b, c) {
+        return a + b + c
+    }
+
+    console.log(sum(1, 2, 3))
+
+    function sum2(a) {
+        return (b) => {
+            return (c) => {
+                return a + b + c
+            }
+        }
+    }
+
+    console.log(sum2(1)(2)(3))
+</script>
+</body>
+</html>
