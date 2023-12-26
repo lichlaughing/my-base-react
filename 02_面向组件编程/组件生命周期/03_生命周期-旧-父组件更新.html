@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03_生命周期-旧-父组件更新</title>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../../js/react.development.js"></script>
+<script src="../../js/react-dom.development.js"></script>
+<script src="../../js/babel.min.js"></script>
+
+<script type="text/babel">
+    class Father extends React.Component {
+        state = {carName: "奔驰"}
+        changeCar = () => {
+            this.setState({carName: "宝马" + Math.floor(Math.random() * 10)})
+        }
+
+        render() {
+            return (
+                <div>
+                    <div>我是父组件:
+                        <button onClick={this.changeCar}>(演示父组件更新)</button>
+                    </div>
+
+                    <Child carName={this.state.carName}/>
+                </div>
+            )
+        }
+    }
+
+    class Child extends React.Component {
+
+        // 第一次传的值不算。组件将要接收到新的props的钩子
+        componentWillReceiveProps(props) {
+            console.log("Child componentWillReceiveProps", props)
+        }
+
+        // 控制组件更新的钩子，返回true则更新
+        shouldComponentUpdate() {
+            console.log("Child shouldComponentUpdate")
+            return true;
+        }
+
+        // 组件将要更新的钩子
+        componentWillUpdate() {
+            console.log("Child componentWillUpdate")
+        }
+
+        // 组件更新完毕的钩子
+        componentDidUpdate() {
+            console.log("Child componentDidUpdate")
+        }
+
+        render() {
+            return (
+                <div>我是子组件，展示内容：{this.props.carName}</div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Father/>, document.getElementById("test"))
+</script>
+</body>
+</html>
