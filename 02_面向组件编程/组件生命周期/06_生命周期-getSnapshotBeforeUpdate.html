@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_生命周期-getSnapshotBeforeUpdate</title>
+    <style>
+        .list {
+            width: 200px;
+            height: 150px;
+            background-color: skyblue;
+            overflow: auto;
+            margin-left: 30%;
+        }
+
+        .news {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="test"></div>
+
+<script src="../../js/17/react.development.js"></script>
+<script src="../../js/17/react-dom.development.js"></script>
+<script src="../../js/babel.min.js"></script>
+
+<script type="text/babel">
+    class News extends React.Component {
+        state = {newAttr: []}
+
+        getSnapshotBeforeUpdate() {
+            return this.refs.list.scrollHeight
+        }
+
+        componentDidUpdate(preProps, preState, height) {
+            this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+        }
+
+        componentDidMount() {
+            setInterval(() => {
+                const {newAttr} = this.state
+                const news = '新闻' + (newAttr.length + 1)
+                this.setState({newAttr: [news, ...newAttr]})
+            }, 1000)
+        }
+
+        render() {
+            return (
+                <div className="list" ref="list">
+                    {
+                        this.state.newAttr.map((n, index) => {
+                            return <div key={index} className="news">{n}</div>
+                        })
+                    }
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<News/>, document.getElementById("test"))
+</script>
+</body>
+</html>

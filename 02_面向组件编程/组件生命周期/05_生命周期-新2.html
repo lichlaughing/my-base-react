@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>04_生命周期-新</title>
+    <title>04_生命周期-新2</title>
 </head>
 <body>
 <div id="test"></div>
@@ -14,7 +14,6 @@
 <script src="../../js/17/react-dom.development.js"></script>
 <script src="../../js/babel.min.js"></script>
 
-<!-- UNSAFE_开头的钩子未来将要被放弃 -->
 <script type="text/babel">
     class Count extends React.Component {
         constructor(props) {
@@ -35,9 +34,14 @@
             this.forceUpdate()
         }
 
-        // 组件将要挂载的钩子
-        UNSAFE_componentWillMount() {
-            console.log("Count componentWillMount")
+        /**
+         * getDerivedStateFromProps 会在调用render方法之前调用，并且在初始挂载及后续更新时都
+         * 会被调用。它应返回一个对象来更新state,如果返回nul1则不更新任何内容。
+         * 使用概率低，若state的值任何时候都取决于props可以使用
+         */
+        static getDerivedStateFromProps(props, state) {
+            console.log("Count getDerivedStateFromProps", props, state)
+            return null
         }
 
         // 组件挂载完毕的钩子
@@ -56,14 +60,19 @@
             return true;
         }
 
-        // 组件将要更新的钩子
-        UNSAFE_componentWillUpdate() {
-            console.log("Count componentWillUpdate")
+        /**
+         * 如果你实现了 getSnapshotBeforeUpdate，React 会在 React 更新 DOM 之前时直接调用它。
+         * 它使你的组件能够在 DOM 发生更改之前捕获一些信息（例如滚动的位置）。
+         * 此生命周期方法返回的任何值都将作为参数传递给 componentDidUpdate。
+         */
+        getSnapshotBeforeUpdate() {
+            console.log("Count getSnapshotBeforeUpdate")
+            return 'nb'
         }
 
         // 组件更新完毕的钩子
-        componentDidUpdate() {
-            console.log("Count componentDidUpdate")
+        componentDidUpdate(preProps, preState, snapshotValue) {
+            console.log("Count componentDidUpdate", preProps, preState, snapshotValue)
         }
 
         // 初始化渲染、状态更新之后
@@ -103,12 +112,6 @@
     }
 
     class Child extends React.Component {
-
-        // 第一次传的值不算。组件将要接收到新的props的钩子
-        UNSAFE_componentWillReceiveProps(props) {
-            console.log("Child componentWillReceiveProps", props)
-        }
-
         // 控制组件更新的钩子，返回true则更新
         shouldComponentUpdate() {
             console.log("Child shouldComponentUpdate")
@@ -132,7 +135,7 @@
         }
     }
 
-    ReactDOM.render(<Count/>, document.getElementById("test"))
+    ReactDOM.render(<Count count="100"/>, document.getElementById("test"))
 </script>
 </body>
 </html>
