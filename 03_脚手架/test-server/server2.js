@@ -7,16 +7,16 @@ app.use((req, rep, next) => {
 })
 
 app.get('/cars', (req, rep) => {
-    const students = [
+    const cars = [
         {id: "001", name: 'car1'},
         {id: "002", name: 'car2'},
         {id: "003", name: 'car3'},
     ]
-    rep.send(students)
+    rep.send(cars)
 })
 
 app.listen(5001, (err) => {
     if (!err) {
-        console.log("服务器1启动成功！学生信息地址：http://localhost:5001/cars")
+        console.log("服务器2启动成功！汽车信息地址：http://localhost:5001/cars")
     }
 })
