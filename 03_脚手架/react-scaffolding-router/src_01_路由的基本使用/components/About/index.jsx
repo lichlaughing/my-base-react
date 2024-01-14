@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 
-export default class App extends Component {
+class About extends Component {
     render() {
         return (
-            <h2>hello world</h2>
+            <h3>我是About</h3>
         );
     }
 }
+
+export default About;

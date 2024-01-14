@@ -131,7 +131,7 @@
   /**
    * Keeps track of the current owner.
    *
-   * The current owner is the component who should own any components that are
+   * The current owner is the component who should own any pages that are
    * currently being constructed.
    */
   var ReactCurrentOwner = {
@@ -2080,7 +2080,7 @@
     }
   }
   /**
-   * Ensure that every element either is passed in a static location, in an
+   * Ensure that every element either is passed in a router_page location, in an
    * array with an explicit keys property defined, or in an object literal
    * with valid key property.
    *
@@ -2168,7 +2168,7 @@
       }
 
       if (typeof type.getDefaultProps === 'function' && !type.getDefaultProps.isReactClassApproved) {
-        error('getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.');
+        error('getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a router_page property named `defaultProps` instead.');
       }
     }
   }
@@ -2237,7 +2237,7 @@
       }
 
       {
-        error('React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
+        error('React.createElement: type is invalid -- expected a string (for ' + 'built-in pages) or a class/function (for composite ' + 'pages) but got: %s.%s', typeString, info);
       }
     }
 

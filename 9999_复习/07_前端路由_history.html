@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>前端路由的基石-history</title>
+</head>
+<body>
+<div style="margin-left: 20%">
+    <a href="https://www.baidu,com" onclick="return push('/test1')">push '/test1'</a>
+    <br><br>
+    <button onclick="push('/test2')">push test2</button>
+    <br><br>
+    <button onclick="replace('/test3')">replace test3</button>
+    <br><br>
+    <button onclick=back()>&lt;=回退</button>
+    <button onclick="forword()">前进=&gt;</button>
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/history/4.7.2/history.js"></script>
+<script>
+    // 直接操作H5 history上的api
+    let history = History.createBrowserHistory()
+    // hash值
+    //let history = History.createHashHistory()
+    function push(path) {
+        history.push(path)
+        return false
+    }
+
+    function replace(path) {
+        history.replace(path)
+    }
+
+    function back() {
+        history.goBack()
+    }
+
+    function forword() {
+        history.goForward()
+    }
+
+    history.listen((location) => {
+        console.log('请求路由路径变化了', location)
+    })
+</script>
+</body>
+</html>

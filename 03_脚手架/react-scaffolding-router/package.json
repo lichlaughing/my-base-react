@@ -1,5 +1,5 @@
 {
-  "name": "react-scaffolding",
+  "name": "react-scaffolding-router",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

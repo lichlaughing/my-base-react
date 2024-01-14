@@ -1572,7 +1572,7 @@ var ReactCurrentDispatcher = {
 /**
  * Keeps track of the current owner.
  *
- * The current owner is the component who should own any components that are
+ * The current owner is the component who should own any pages that are
  * currently being constructed.
  */
 var ReactCurrentOwner = {
@@ -2800,7 +2800,7 @@ var checkPropTypes_1 = checkPropTypes;
 /**
  * ReactElementValidator provides a wrapper around a element factory
  * which validates the props passed to the element. This is intended to be
- * used only in DEV and could be replaced by a static type checker for languages
+ * used only in DEV and could be replaced by a router_page type checker for languages
  * that support it.
  */
 
@@ -2889,7 +2889,7 @@ function validateExplicitKey(element, parentType) {
 }
 
 /**
- * Ensure that every element either is passed in a static location, in an
+ * Ensure that every element either is passed in a router_page location, in an
  * array with an explicit keys property defined, or in an object literal
  * with valid key property.
  *
@@ -2963,7 +2963,7 @@ function validatePropTypes(element) {
     warningWithoutStack$1(false, 'Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', name || 'Unknown');
   }
   if (typeof type.getDefaultProps === 'function') {
-    !type.getDefaultProps.isReactClassApproved ? warningWithoutStack$1(false, 'getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.') : void 0;
+    !type.getDefaultProps.isReactClassApproved ? warningWithoutStack$1(false, 'getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a router_page property named `defaultProps` instead.') : void 0;
   }
 }
 
@@ -3020,7 +3020,7 @@ function createElementWithValidation(type, props, children) {
       typeString = typeof type;
     }
 
-    warning$1(false, 'React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
+    warning$1(false, 'React.createElement: type is invalid -- expected a string (for ' + 'built-in pages) or a class/function (for composite ' + 'pages) but got: %s.%s', typeString, info);
   }
 
   var element = createElement.apply(this, arguments);
