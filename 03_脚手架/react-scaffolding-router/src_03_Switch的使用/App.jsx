@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import MyNavLink from "./components/MyNavLink";
 import Home from "./pages/Home"; // 引入路由组件
 import About from "./pages/About"; // 引入路由组件
+import Test from "./pages/Test"
 import Header from "./components/Header"; // 引入一般组件
 
 export default class App extends Component {
@@ -27,7 +28,7 @@ export default class App extends Component {
                                 <Switch>
                                     <Route path="/about" component={About}/>
                                     <Route path="/home" component={Home}/>
-                                    <Redirect to="/home"/>
+                                    <Route path="/home" component={Test}/>
                                 </Switch>
                             </div>
                         </div>
@@ -35,5 +36,6 @@ export default class App extends Component {
                 </div>
             </div>
         )
+            ;
     }
 }
