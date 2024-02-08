@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 // 引入action
-import { increment, decrement, incrementAsync } from '../../redux/actions/count';
+import {
+    createIncrementAction,
+    createDecrementAction,
+    createIncrementAsyncAction
+} from '../../redux/actions/count';
+
 // 引入Connect用于链接ui和redux
 import { connect } from 'react-redux';
 
@@ -38,7 +43,7 @@ class Count extends Component {
                 <h3>我是Count组件</h3>
                 <h4>人员列表为：</h4>
                 <ul>
-                    {this.props.personArr.map(personObj => {
+                    {this.props.ydr.map(personObj => {
                         return (
                             <li key={personObj.id}>
                                 名字：{personObj.name}-age:{personObj.age}
@@ -64,11 +69,11 @@ class Count extends Component {
 
 // 使用connect创建并暴露一个Count容器组件
 export default connect(
-    state => ({ count: state.count, personArr: state.person }),
+    state => ({ count: state.count, ydr: state.person }),
     // 精简写法。自动调用dispatch
     {
-        increment,
-        decrement,
-        incrementAsync
+        increment: createIncrementAction,
+        decrement: createDecrementAction,
+        incrementAsync: createIncrementAsyncAction
     }
 )(Count);

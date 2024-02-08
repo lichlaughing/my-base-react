@@ -9,7 +9,6 @@ import store from './redux//store';
 import { Provider } from 'react-redux';
 
 ReactDOM.render(
-    /* 通过Provider让后App所有的后代都能使用store */
     <Provider store={store}>
         <App />
     </Provider>,
