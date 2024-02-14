@@ -1,16 +1,19 @@
-import { NavLink, useRoutes, useInRouterContext } from 'react-router-dom';
+import { NavLink, useRoutes } from 'react-router-dom';
 import React from 'react';
 import routes from './routes';
-import Header from './components/Header';
 
 export default function App() {
-    console.log('App组件位于路由组件context', useInRouterContext());
     // 根据路由表生成路由规则
     const element = useRoutes(routes);
+
     return (
         <div className="container">
             <div className="row">
-                <Header />
+                <div className="col-xs-offset-2 col-xs-8">
+                    <div className="page-header">
+                        <h2>React Route Demo</h2>
+                    </div>
+                </div>
             </div>
             <div className="row">
                 <div className="col-xs-2 col-xs-offset-2">

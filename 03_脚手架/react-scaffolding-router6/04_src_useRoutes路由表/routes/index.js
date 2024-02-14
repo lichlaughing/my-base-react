@@ -2,7 +2,7 @@ import About from '../pages/About';
 import Home from '../pages/Home';
 import { Navigate } from 'react-router-dom';
 
-export default [
+const routes = [
     {
         path: '/about',
         element: <About />
@@ -16,3 +16,5 @@ export default [
         element: <Navigate to="/about" />
     }
 ];
+
+export default routes;

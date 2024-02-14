@@ -30,8 +30,7 @@ const routes = [
                 element: <Message />,
                 children: [
                     {
-                        // path: 'detail/:id', param参数
-                        path: 'detail',
+                        path: 'detail/:id',
                         element: <Detail />
                     }
                 ]

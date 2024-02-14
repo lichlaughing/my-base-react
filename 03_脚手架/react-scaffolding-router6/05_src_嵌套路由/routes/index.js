@@ -6,7 +6,6 @@ import Home from '../pages/Home';
 import News from '../pages/News';
 import Message from '../pages/Message';
 import { Navigate } from 'react-router-dom';
-import Detail from '../pages/Detail';
 
 const routes = [
     {
@@ -18,23 +17,12 @@ const routes = [
         element: <Home />,
         children: [
             {
-                path: '',
-                element: <Navigate to="message" />
-            },
-            {
                 path: 'news',
                 element: <News />
             },
             {
                 path: 'message',
-                element: <Message />,
-                children: [
-                    {
-                        // path: 'detail/:id', param参数
-                        path: 'detail',
-                        element: <Detail />
-                    }
-                ]
+                element: <Message />
             }
         ]
     },
